@@ -1,13 +1,15 @@
+import {AppNavBar} from "./AppNavBar.jsx";
+
 export function MainLayout() {
   return (
     <div>
       <div>
-        navbar
-        <Link to="/">HOME</Link>
-        <Link to="/board/add">글쓰기</Link>
-      </div>
-      <div>
-        <Outlet/>
+        <div className="mb-3">
+          <AppNavBar/>
+        </div>
+        <Container>
+          <Outlet/>
+        </Container>
       </div>
     </div>
   );
