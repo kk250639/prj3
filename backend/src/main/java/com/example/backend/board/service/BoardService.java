@@ -1,11 +1,15 @@
 package com.example.backend.board.service;
 
+import com.example.backend.board.dto.BoardListInfo;
 import com.example.backend.board.entity.Board;
 import com.example.backend.board.dto.BoardDto;
 import com.example.backend.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,5 +44,22 @@ public class BoardService {
         }
 
         return true;
+    }
+
+    public List<BoardListInfo> list() {
+        return boardRepository.findAllByOrderByIdDesc();
+    }
+
+    public BoardDto getBoardById(Integer id) {
+        Board board = boardRepository.findById(id).get();
+        BoardDto boardDto = new BoardDto();
+        boardDto.setId(board.getId());
+        boardDto.setTitle(board.getTitle());
+        boardDto.setContent(board.getContent());
+        boardDto.setAuthor(board.getAuthor());
+        boardDto.setInsertedAt(board.getInsertedAt());
+
+        return boardDto;
+
     }
 }
