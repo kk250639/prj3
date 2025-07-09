@@ -11,4 +11,5 @@ public class BoardDto {
     private String content;
     private String author;
     private LocalDateTime insertedAt;
+
 }

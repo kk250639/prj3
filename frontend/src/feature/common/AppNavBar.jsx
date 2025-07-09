@@ -1,21 +1,27 @@
-export function AppNavBar() {
-  return <div>
-    <Navbar expan="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand>PRJ3</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.link as={NavLink} to href="/">
-              HOME
-            </Nav.link>
-            <Nav.link as={NavLink} to href="/board/add">
-              새 글
-            </Nav.link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+import { Link, NavLink } from "react-router";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
-  </div>
+export function AppNavBar() {
+  return (
+    <div>
+      <Navbar expand="lg" className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand to="/" as={Link}>
+            PRJ3
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={NavLink} to="/">
+                HOME
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/board/add">
+                새글
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  );
 }
