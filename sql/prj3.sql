@@ -7,3 +7,4 @@ CREATE TABLE board
     inserted_at datetime           NOT NULL DEFAULT NOW(),
     CONSTRAINT pk_board PRIMARY KEY (id)
 );
+DROP TABLE board;
