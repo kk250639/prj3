@@ -13,7 +13,7 @@ public class BoardController {
     public String add(@RequestBody boardDto dto) {
         System.out.println(dto);
 
-        return null
+        return null;
     }
 
 }
