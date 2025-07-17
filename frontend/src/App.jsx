@@ -1,6 +1,14 @@
-import { BrowserRouter, Link, Outlet, Route, Routes } from "react-router";
+import {
+  BrowserRouter,
+  Link,
+  Outlet,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function MainLayout() {
   return (
@@ -30,7 +38,9 @@ function BoardAdd() {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
 
-  function handleSaveButoonClick() {
+  const navigate = useNavigate();
+
+  function handleSaveButtonClick() {
     axios
       .post("/api/board/add", {
         title: title,
@@ -38,7 +48,13 @@ function BoardAdd() {
         author: author,
       })
       .then((res) => {
-        console.log("잘 되면 실행되는 코드");
+        const message = res.data.message;
+        if (message) {
+          // toast 띄우기
+          toast(message.text, { type: message.type });
+        }
+        // "/"로 이동
+        navigate("/");
       })
       .catch((err) => {
         console.log("잘 안되면 실행되는 코드");
@@ -67,16 +83,16 @@ function BoardAdd() {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
-        <div>
-          <input
-            type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-          <div>
-            <button onClick={handleSaveButoonClick}>저장</button>
-          </div>
-        </div>
+      </div>
+      <div>
+        <input
+          type="text"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        />
+      </div>
+      <div>
+        <button onClick={handleSaveButtonClick}>저장</button>
       </div>
     </div>
   );
