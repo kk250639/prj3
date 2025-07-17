@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.dto.boardDto;
+import com.example.backend.dto.BoardDto;
 import com.example.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ public class BoardController {
 
     @PostMapping("add")
     @ResponseBody
-    public String add(@RequestBody boardDto dto) {
+    public String add(@RequestBody BoardDto dto) {
         boardService.add(dto);
 
         return null;
